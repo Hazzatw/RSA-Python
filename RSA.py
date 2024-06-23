@@ -70,7 +70,7 @@ def KeyGenerator():
         e = random.randrange(1, PHIn)
         g = gcd(e, PHIn) # continues this until a valid value for e is found, that meets the two conditions
     d =  ModularInverse(e,PHIn)  # d*emod(phi(n) =1 , therefore mod inverse of e and phi(n) should = 1
-    return(n,e,d)   # retruns n which is needed for both keys as well as the e and d values
+    return(n,e,d)   #public key is e,n and private key is e,d
 
 def RSAEncrypt(Plainntext,Publickey,n): # need to have already generated keys
     CipherText = ""
@@ -82,5 +82,5 @@ def RSAEncrypt(Plainntext,Publickey,n): # need to have already generated keys
 
 def RSADecrypt(CipherText,privatekey,n):
     letter = pow(int(CipherText),int(privatekey),int(n)) # character^d mod n
-    letter=chr(letter)   # decrypts a letter at a time
+    letter=chr(letter)   # decrypts ONE letter at a time
     return(letter)
